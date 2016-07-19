@@ -17,6 +17,7 @@ define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 require_once MY_PLUGIN_PATH . 'includes/widget-popular.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-related.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-single-article.php';
+require_once MY_PLUGIN_PATH . 'includes/widget-headline-list.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Popular' );
@@ -29,4 +30,8 @@ add_action( 'widgets_init', function(){
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Single_Article' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Widget_Headline_List' );
 });
