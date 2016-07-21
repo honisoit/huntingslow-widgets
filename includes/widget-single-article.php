@@ -27,12 +27,18 @@ class Widget_Single_Article extends WP_Widget {
     echo $args['before_widget'];
     ?>
     <div class="single-article">
-			<img class="single-article__image" src="http://honisoit.com/wp-content/uploads/2016/05/honour_society_splash-620x400.png"></img>
-			<h1 class="single-article__headline">The Honour Society</h1>
-			<p class="single-article__byline">Thomas Joyner</p>
-			<p class="single-article__excerpt">
-				In cramped offices in the inner Sydney suburb of Ultimo, the Golden Key International Honour Society’s headquarters for the Asia-Pacific feel more like a family tax accountant or a business startup. Its rooms are on the fourth floor of a shared block on Jones Street, and overlook a Chinese supermarket on one side and a self-storage warehouse on the other. There’s barely enough space for seating in the reception area, and a large collapsible banner emblazoned with the company’s logo leans haphazardly against the front counter.
-			</p>
+			<div class="single-article__flex">
+				<div class="single-article__imagebox">
+					<img class="single-article__image" src="http://honisoit.com/wp-content/uploads/2016/05/honour_society_splash-620x400.png"></img>
+				</div>
+				<div class="single-article__textbox">
+					<h4 class="single-article__headline">The Honour Society</h4>
+					<p class="single-article__byline">by Thomas Joyner</p>
+					<p class="single-article__excerpt">
+						In cramped offices in the inner Sydney suburb of Ultimo, the Golden Key International Honour Society’s headquarters for the Asia-Pacific feel more like a family tax accountant or a business startup. Its rooms are on the fourth floor of a shared block on Jones Street, and overlook a Chinese supermarket on one side and a self-storage warehouse on the other. There’s barely enough space for seating in the reception area, and a large collapsible banner emblazoned with the company’s logo leans haphazardly against the front counter.
+					</p>
+				</div>
+			</div>
     </div>
     <?php
 		echo $args['after_widget'];

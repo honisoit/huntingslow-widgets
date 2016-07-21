@@ -27,21 +27,21 @@ class Widget_Related extends WP_Widget {
     echo $args['before_widget'];
     ?>
     <div class="related">
-			<header class="related__title">Related</header>
+			<h3 class="related__title">Related</h3>
 			<div class="related__item-row">
 	      <div class="related__item">
 					<p class="related__category">News</p>
-					<h1 class="related__headline">Further cuts to SCA provoke protest</h1>
+					<h4 class="related__headline">Further cuts to SCA provoke protest</h1>
 					<p class="related__date">April 15</p>
 				</div>
 				<div class="related__item">
 					<p class="related__category">Feature</p>
-					<h1 class="related__headline">How an art school was eaten</h1>
+					<h4 class="related__headline">How an art school was eaten</h1>
 					<p class="related__date">April 15</p>
 				</div>
 				<div class="related__item">
 					<p class="related__category">News</p>
-					<h1 class="related__headline">Twenty bizarre bugs of the hinterlands</h1>
+					<h4 class="related__headline">Twenty bizarre bugs of the hinterlands</h1>
 					<p class="related__date">April 15</p>
 				</div>
 			</div>

@@ -27,16 +27,16 @@ class Widget_Popular extends WP_Widget {
     echo $args['before_widget'];
     ?>
     <div class="popular">
-      <h1 class="popular__title">Most Popular</h1>
-      <ol class="popular__list">
+      <h3 class="popular__title">Most Popular</h3>
+      <ul class="popular__list">
         <li class="popular__list-item">
-          <a href="#">Meat is bad</a>
+          <a href="#">Let SCA Stay movement stages performance art protest outside Archibald Prize ceremony</a>
         </li>
         <li class="popular__list-item">
-          <a href="#">Andrew is bad</a>
+					<a href="#">Andrew is bad</a> 
         </li>
         <li class="popular__list-item">
-          <a href="#">Bell is bad</a>
+          <a href="#">300 students protest SCA closure at USyd Senate meeting</a>
         </li>
         <li class="popular__list-item">
           <a href="#">Yes is bad</a>
@@ -44,7 +44,7 @@ class Widget_Popular extends WP_Widget {
         <li class="popular__list-item">
           <a href="#">Everything is bad</a>
         </li>
-      </ol>
+      </ul>
     </div>
     <?php
 		echo $args['after_widget'];
