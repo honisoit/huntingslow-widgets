@@ -14,6 +14,7 @@ class Widget_Headline_List extends WP_Widget {
 			array( 'description' => 'Display narrow verticle column of headlines, usually news. ') // Args
 		);
 	}
+
 	/**
 	 * Front-end display of widget.
 	 *
@@ -34,7 +35,7 @@ class Widget_Headline_List extends WP_Widget {
 		) );
     echo $args['before_widget'];
 
-		echo '<h3>' . $column_heading . '</h3>';
+		echo '<h3 class="headline-list__title">' . $column_heading . '</h3>';
 		// The Loop
 		if ( $headlines->have_posts() ) {
 			while ( $headlines->have_posts() ) {
@@ -43,9 +44,9 @@ class Widget_Headline_List extends WP_Widget {
 					$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
 					$primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
 
-					echo '<p><a>' . ucwords($primary_tag_array['name']) . '</a></p>';
+					echo '<p class="headline-list__primary-tag"><a>' . ucwords($primary_tag_array['name']) . '</a></p>';
 				}
-				echo '<p><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p>';
+				echo '<p class="headline-list__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p>';
 			}
 			/* Restore original Post Data */
 			wp_reset_postdata();
