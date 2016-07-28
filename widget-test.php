@@ -14,16 +14,14 @@ if ( !defined('ABSPATH') )
 //Get the absolute path of the directory that contains the file, with trailing slash.
 define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 //This is important, otherwise we'll get the path of a subdirectory
-require_once MY_PLUGIN_PATH . 'includes/widget-popular.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-related.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-single-article.php';
-require_once MY_PLUGIN_PATH . 'includes/widget-headline-list.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-banner-link.php';
-
-add_action( 'widgets_init', function(){
-     register_widget( 'Widget_Popular' );
-});
-
+require_once MY_PLUGIN_PATH . 'includes/pane-headline-list.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-popular.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-single-lg.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-single-md.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-single-sm.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );
@@ -34,9 +32,25 @@ add_action( 'widgets_init', function(){
 });
 
 add_action( 'widgets_init', function(){
-     register_widget( 'Widget_Headline_List' );
+     register_widget( 'Huntingslow_Pane_Banner_Link' );
 });
 
 add_action( 'widgets_init', function(){
-     register_widget( 'Huntingslow_Pane_Banner_Link' );
+     register_widget( 'Huntingslow_Pane_Headline_List' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Popular' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Single_Lg' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Single_Md' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Single_Sm' );
 });

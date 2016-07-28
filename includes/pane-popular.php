@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Adds Widget_Popular widget.
+ * Adds top 5 list widget.
  */
-class Widget_Popular extends WP_Widget {
+class Huntingslow_Pane_Popular extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Widget_Popular', // Base ID
+			'Huntingslow_Pane_Popular', // Base ID
 			__('Top 5 list', 'text_domain'), // Name
 			array( 'description' => 'Display top 5 posts from around the site') // Args
 		);
@@ -26,22 +26,22 @@ class Widget_Popular extends WP_Widget {
 
     echo $args['before_widget'];
     ?>
-    <div class="popular">
-      <h3 class="popular__title">Most Popular</h3>
-      <ul class="popular__list">
-        <li class="popular__list-item">
+    <div class="pane-popular">
+      <h3 class="pane-popular__title">Most Popular</h3>
+      <ul class="pane-popular__list">
+        <li class="pane-popular__list-item">
           <a href="#">Let SCA Stay movement stages performance art protest outside Archibald Prize ceremony</a>
         </li>
-        <li class="popular__list-item">
-					<a href="#">Andrew is bad</a> 
+        <li class="pane-popular__list-item">
+					<a href="#">Andrew is bad</a>
         </li>
-        <li class="popular__list-item">
+        <li class="pane-popular__list-item">
           <a href="#">300 students protest SCA closure at USyd Senate meeting</a>
         </li>
-        <li class="popular__list-item">
+        <li class="pane-popular__list-item">
           <a href="#">Yes is bad</a>
         </li>
-        <li class="popular__list-item">
+        <li class="pane-popular__list-item">
           <a href="#">Everything is bad</a>
         </li>
       </ul>

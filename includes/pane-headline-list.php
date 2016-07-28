@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Adds Widget_Popular widget.
+ * Adds Headline List widget.
  */
-class Widget_Headline_List extends WP_Widget {
+class Huntingslow_Pane_Headline_List extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Widget_Headline_List', // Base ID
+			'Huntingslow_Pane_Headline_List', // Base ID
 			__('Headline List', 'text_domain'), // Name
 			array( 'description' => 'Display narrow verticle column of headlines, usually news. ') // Args
 		);

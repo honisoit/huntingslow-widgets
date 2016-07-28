@@ -1,21 +1,22 @@
 <?php
 
 /**
- * Banner link widget.
+ * Raw frame widget for embedding interactives throughout the site
  */
-class Huntingslow_Pane_Banner_Link extends WP_Widget {
-	/**
-	 * Register widget with WordPress.
-	 */
-	function __construct() {
-		parent::__construct(
-			'Huntingslow_Pane_Banner_Link', // Base ID
-			__('Banner Link', 'text_domain'), // Name
-			array( 'description' => 'Full width, text only link to an article. Ideal for breaking news.') // Args
-		);
-	}
 
-	/**
+class Huntingslow_Pane_Raw_Frame extends WP_Widget {
+  /**
+   * Register widget with WordPress.
+   */
+  function __construct() {
+    parent::__construct(
+      'Huntingslow_Pane_Raw_Frame', // Base ID
+      __('Embed Frame', 'text_domain'), // Name
+      array( 'description' => 'iframe embed of external or interactive content.') // Args
+    );
+  }
+
+  /**
 	 * Front-end display of widget.
 	 *
 	 * @see WP_Widget::widget()
@@ -34,9 +35,9 @@ class Huntingslow_Pane_Banner_Link extends WP_Widget {
 			'posts_per_page' => 2
 		) );
     echo $args['before_widget'];
-    echo '<div class="pane-banner-link';
+    echo '<div class="pane-raw-frame';
     if ( $is_breaking_news == '1' ) {
-      echo ' pane-banner-link--breaking';
+      echo ' pane-banner-link--bordered';
     }
     echo '"><h4 class="pane-banner-link__text"><a href="'. $link_URL .'">'. $banner_text .'</a></h4></div>';
 
