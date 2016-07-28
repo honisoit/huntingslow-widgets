@@ -18,6 +18,7 @@ require_once MY_PLUGIN_PATH . 'includes/widget-popular.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-related.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-single-article.php';
 require_once MY_PLUGIN_PATH . 'includes/widget-headline-list.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-banner-link.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Popular' );
@@ -34,4 +35,8 @@ add_action( 'widgets_init', function(){
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Headline_List' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Banner_Link' );
 });
