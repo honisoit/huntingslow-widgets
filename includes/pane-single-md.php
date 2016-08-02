@@ -34,24 +34,40 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 		$display_primary_tag = $instance['display_primary_tag'];
 		$display_standfirst = $instance['display_standfirst'];
 
-		$headlines = new WP_Query( array(
-			'category_name' => 'news',
-			'posts_per_page' => 2
+		$story = new WP_Query( array(
+			'p' => $story_ID
 		) );
 
 		// Set up the variables needed for the markup
 
 		// Spit out the markup
     echo $args['before_widget'];
-		?>
+		echo '<div class="single-md">';
 
-		<div class="single-md">
-			<h1 class="single-md__headline">Placeholder headline</h1>
-			<p class="single-md__standfirst">Placeholder standfirst</p>
-		</div>
+		if ( $story->have_posts() ) {
+		  while ( $story->have_posts() ) {
+			  $story->the_post();
+				echo '<figure class="single-md__image">';
+					the_post_thumbnail();
+				echo '</figure>';
+				echo '<div class="single-md__copy">';
+					echo '<h1 class="single-md__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h1>';
+					if ( function_exists( 'coauthors_posts_links' ) ) {
+						coauthors_posts_links();
+					} else {
+						the_author_posts_link();
+					}
+		      echo '<p class="single-md__standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
+				echo '</div>';
+		  }
+		  /* Restore original Post Data */
+		  wp_reset_postdata();
+	  } else {
+		  echo 'you fucked up the query';
+	  }
+  	wp_reset_postdata();
 
-		<?php
-    wp_reset_postdata();
+		echo '</div>';
 		echo $args['after_widget'];
 	}
 	/**
@@ -76,7 +92,7 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 		}  ?>
 		<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>"><?php _e( 'Story URL:', 'wp_widget_plugin' ); ?></label>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'Story URL' ) ); ?>" type="text" value="<?php echo esc_attr( $story_URL ); ?>" />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'story_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $story_URL ); ?>" />
 		</p>
 
 		<p>

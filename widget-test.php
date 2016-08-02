@@ -22,6 +22,8 @@ require_once MY_PLUGIN_PATH . 'includes/pane-popular.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-lg.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-md.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-sm.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-link-sm.php';
+require_once MY_PLUGIN_PATH . 'includes/pane-aggregator-md.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );
@@ -53,4 +55,12 @@ add_action( 'widgets_init', function(){
 
 add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Single_Sm' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Link_Sm' );
+});
+
+add_action( 'widgets_init', function(){
+     register_widget( 'Huntingslow_Pane_Aggregator_Md' );
 });

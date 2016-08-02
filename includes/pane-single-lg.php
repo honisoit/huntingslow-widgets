@@ -30,28 +30,15 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 		// not sure that this is the best point in the logic to do this.
 		// possibly better to update on each save
 		$story_ID = url_to_postid( $story_URL );
-		$story = get_post( $story_ID );
-		$title = $story->post_title;
 		$display_byline = $instance['display_byline'];
 		$display_primary_tag = $instance['display_primary_tag'];
 		$display_standfirst = $instance['display_standfirst'];
 
-		$headlines = new WP_Query( array(
-			'category_name' => 'news',
-			'posts_per_page' => 2
-		) );
+		echo $args['before_widget'];
 
-		// Set up the variables needed for the markup
+		$post = get_post( 6 );
+		echo '<p>' . $post->post_title . '</p>';
 
-		// Spit out the markup
-    echo $args['before_widget'];
-		?>
-		<div class="single-lg">
-			<h1 class="single-lg__headline">Headline: <?php echo $title; ?></h1>
-			<p class="single-lg__standfirst">Placeholder standfirst</p>
-		</div>
-
-		<?php
     wp_reset_postdata();
 		echo $args['after_widget'];
 	}
@@ -77,7 +64,7 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 		}  ?>
 		<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>"><?php _e( 'Story URL:', 'wp_widget_plugin' ); ?></label>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'Story URL' ) ); ?>" type="text" value="<?php echo esc_attr( $story_URL ); ?>" />
+		<input id="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'story_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $story_URL ); ?>" />
 		</p>
 
 		<p>
