@@ -38,8 +38,6 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 			'p' => $story_ID
 		) );
 
-		// Set up the variables needed for the markup
-
 		// Spit out the markup
     echo $args['before_widget'];
 		echo '<div class="single-md">';
@@ -62,11 +60,7 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 		  }
 		  /* Restore original Post Data */
 		  wp_reset_postdata();
-	  } else {
-		  echo 'you fucked up the query';
 	  }
-  	wp_reset_postdata();
-
 		echo '</div>';
 		echo $args['after_widget'];
 	}
