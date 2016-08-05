@@ -50,10 +50,12 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 			while ( $article->have_posts() ) {
 				$article->the_post(); ?>
 
-				
+
 				<div class="single-lg">
 					<?php if ($display_image == '1') {
-						echo '<figure class="single-lg__image">' . the_post_thumbnail() . '</figure>';
+						echo '<figure class="single-lg__image">';
+						the_post_thumbnail();
+						echo '</figure>';
 					} ?>
 					<div class="single-lg__copy">
 						<?php if ($display_primary_tag == '1') {
