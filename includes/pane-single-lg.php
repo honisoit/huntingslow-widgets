@@ -64,18 +64,18 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 						<h1 class="single-lg__headline">
 							<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
 						</h1>
-						<p class="single-lg__byline">
-							<?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
-								coauthors_posts_links();
-							} else {
-								the_author_posts_link();
-							} ?>
-						</p>
 						<p class="single-lg__standfirst">
 							<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
 						</p>
 						<p class="single-lg__excerpt">
 							<?php echo $excerpt = ($display_excerpt == '1' ? 'Displaying the excerpt' : ''); ?>
+						</p>
+						<p class="single-lg__byline">
+							By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
+								coauthors_posts_links();
+							} else {
+								the_author_posts_link();
+							} ?>
 						</p>
 						<?php if ( ! $related_one_URL == '') {
 							$related_one_ID = url_to_postid( $related_one_URL );
