@@ -35,72 +35,84 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 		$related_one_URL = $instance['related_one_URL'];
 		$related_two_URL = $instance['related_two_URL'];
 
-		// TODO: Move this logic to the save function so it is only run once
-		$article_ID = url_to_postid( $article_URL );
+		if ( $article_URL == '' ) {
+			echo '<p>Article (Full Strap) requires an Article URL</p>';
+		} else {
+			// TODO: Consider moving this logic to the save function so it is only run once
+			$article_ID = url_to_postid( $article_URL );
+				// Run the query
+			$article = new WP_Query( array(
+				'p' => $article_ID
+			));
 
-		// Run the query
-		$article = new WP_Query( array(
-			'p' => $article_ID
-		) );
+			// Spit the markup
+			echo $args['before_widget'];
+			if ( $article->have_posts() ) {
+				while ( $article->have_posts() ) {
+					$article->the_post(); ?>
 
-		// Spit the markup
-		echo $args['before_widget'];
-
-		if ( $article->have_posts() ) {
-			while ( $article->have_posts() ) {
-				$article->the_post(); ?>
-
-
-				<div class="single-lg">
-					<?php if ($display_image == '1') {
-						echo '<figure class="single-lg__image">';
-						the_post_thumbnail();
-						echo '</figure>';
-					} ?>
-					<div class="single-lg__copy">
-						<?php if ($display_primary_tag == '1') {
-							echo '<p class="single-lg__primary-tag">Primary tag</p>';
+					<div class="single-lg">
+						<?php if ($display_image == '1') {
+							echo '<figure class="single-lg__image">';
+							echo the_post_thumbnail();
+							echo '</figure>';
 						} ?>
-						<h1 class="single-lg__headline">
-							<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
-						</h1>
-						<p class="single-lg__standfirst">
-							<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
-						</p>
-						<p class="single-lg__excerpt">
-							<?php echo $excerpt = ($display_excerpt == '1' ? 'Displaying the excerpt' : ''); ?>
-						</p>
-						<p class="single-lg__byline">
-							By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
-								coauthors_posts_links();
-							} else {
-								the_author_posts_link();
+
+						<div class="single-lg__copy">
+							<?php if ($display_primary_tag == '1') {
+								echo '<p class="single-lg__primary-tag">Primary tag</p>';
 							} ?>
-						</p>
-						<?php if ( ! $related_one_URL == '') {
-							$related_one_ID = url_to_postid( $related_one_URL );
-							$related_one_post = get_post( $related_one_ID );
-							echo '<span class="single-lg__related-one">';
-							echo $related_one_post->post_title;
-							echo '</span>';
-						} ?>
-						<?php if ( ! $related_two_URL == '') {
-							$related_two_ID = url_to_postid( $related_two_URL );
-							$related_two_post = get_post( $related_two_ID );
-							echo '<span class="single-lg__related-two">';
-							echo $related_two_post->post_title;
-							echo '</span>';
-						} ?>
+							<h1 class="single-lg__headline">
+								<?php echo '<a href="';
+								echo get_the_permalink();
+								echo '">';
+								echo get_the_title();
+								echo '</a>'; ?>
+							</h1>
+							<p class="single-lg__standfirst">
+								<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
+							</p>
+							<p class="single-lg__excerpt">
+								<?php echo $excerpt = ($display_excerpt == '1' ? the_excerpt() : ''); ?>
+							</p>
+							<?php if ( ! $related_one_URL == '') {
+								$related_one_ID = url_to_postid( $related_one_URL );
+								$related_one_post = get_post( $related_one_ID );
+								echo '<span class="single-lg__related-one"><a href="';
+								echo $related_one_URL;
+								echo '">';
+								echo $related_one_post->post_title;
+								echo '<a/></span>';
+							} ?>
+							<?php if ( ! $related_two_URL == '') {
+								$related_two_ID = url_to_postid( $related_two_URL );
+								$related_two_post = get_post( $related_two_ID );
+								echo '<span class="single-lg__related-two"><a href="';
+								echo $related_two_URL;
+								echo '">';
+								echo $related_two_post->post_title;
+								echo '<a/></span>';
+							} ?>
+
+							<p class="single-lg__byline">
+								<?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
+									coauthors_posts_links();
+								} else {
+									the_author_posts_link();
+								} ?>
+							</p>
+
+						</div>
 					</div>
-				</div>
 
-				<?php
+					<?php
+				}
+				/* Restore original Post Data */
+				wp_reset_postdata();
 			}
-			/* Restore original Post Data */
-			wp_reset_postdata();
-		}
 
-		echo $args['after_widget'];
+			echo $args['after_widget'];
+		}
 	}
 	/**
 	 * Back-end widget form.
