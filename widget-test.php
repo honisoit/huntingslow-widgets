@@ -15,7 +15,6 @@ if ( !defined('ABSPATH') )
 define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 //This is important, otherwise we'll get the path of a subdirectory
 require_once MY_PLUGIN_PATH . 'includes/widget-related.php';
-require_once MY_PLUGIN_PATH . 'includes/widget-single-article.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-banner-link.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-headline-list.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-popular.php';
@@ -27,7 +26,6 @@ require_once MY_PLUGIN_PATH . 'includes/pane-aggregator-md.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );
-     register_widget( 'Widget_Single_Article' );
      register_widget( 'Huntingslow_Pane_Banner_Link' );
      register_widget( 'Huntingslow_Pane_Headline_List' );
      register_widget( 'Huntingslow_Pane_Popular' );
