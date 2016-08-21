@@ -63,9 +63,9 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 				      echo '<p class="single-md__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
 			    	}
 					} ?>
-					<h1 class="single-md__headline">
+					<h3 class="single-md__headline">
 						<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
-					</h1>
+					</h3>
 					<p class="single-md__standfirst">
 						<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
 					</p>
