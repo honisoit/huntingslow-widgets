@@ -41,7 +41,6 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 		// Spit out the markup
     echo $args['before_widget'];
 		echo '<div class="single-md">';
-		echo '<div class="single-md__flex">';
 
 		if ( $story->have_posts() ) {
 		  while ( $story->have_posts() ) {
@@ -50,21 +49,18 @@ class Huntingslow_Pane_Single_Md extends WP_Widget {
 					the_post_thumbnail();
 				echo '</figure>';
 				echo '<div class="single-md__copy">';
-					echo '<h4 class="single-md__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h4>';
-					echo '<p class="single-md__standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
-					echo '<p class="single-md__byline">';
+					echo '<h1 class="single-md__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h1>';
 					if ( function_exists( 'coauthors_posts_links' ) ) {
 						coauthors_posts_links();
 					} else {
 						the_author_posts_link();
 					}
-					echo '</p>';
+		      echo '<p class="single-md__standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
 				echo '</div>';
 		  }
 		  /* Restore original Post Data */
 		  wp_reset_postdata();
 	  }
-		echo '</div>';
 		echo '</div>';
 		echo $args['after_widget'];
 	}
