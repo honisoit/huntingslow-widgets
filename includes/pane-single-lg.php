@@ -50,17 +50,25 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 			while ( $article->have_posts() ) {
 				$article->the_post(); ?>
 
-
 				<div class="single-lg">
 					<div class="flex-container">
 						<?php if ($display_image == '1') {
-							echo '<figure class="single-lg__image">';
+							echo '<figure class="single-lg__image"><a href="';
+							echo get_the_permalink();
+							echo '">';
 							the_post_thumbnail();
-							echo '</figure>';
+							echo '</a></figure>';
 						} ?>
 						<div class="single-lg__copy">
 							<?php if ($display_primary_tag == '1') {
-								echo '<p class="single-lg__primary-tag">Primary tag</p>';
+								$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
+						    $primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
+						    $primary_tag = ucwords($primary_tag_array['name']);
+						    // We need to get the tag URL in a way that doesn't mess up when there are
+						    // special characters in the primary tag. Otherwise prevent their use.
+						    if ($primary_tag) {
+						      echo '<p class="single-lg__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
+						    }
 							} ?>
 							<h1 class="single-lg__headline">
 								<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
@@ -68,9 +76,12 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 							<p class="single-lg__standfirst">
 								<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
 							</p>
-							<p class="single-lg__excerpt">
-								<?php echo $excerpt = ($display_excerpt == '1' ? 'Displaying the excerpt' : ''); ?>
-							</p>
+							<?php if ( $display_excerpt == '1' ) {
+								echo '<div class="single-lg__excerpt">';
+								the_excerpt();
+								echo '</div>';
+							}
+							?>
 							<p class="single-lg__byline">
 								By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
 									coauthors_posts_links();
