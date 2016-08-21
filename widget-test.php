@@ -22,7 +22,7 @@ require_once MY_PLUGIN_PATH . 'includes/pane-single-lg.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-md.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-sm.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-link-sm.php';
-require_once MY_PLUGIN_PATH . 'includes/pane-aggregator-md.php';
+require_once MY_PLUGIN_PATH . 'includes/aggregator-md.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );

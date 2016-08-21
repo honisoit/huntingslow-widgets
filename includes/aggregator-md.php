@@ -11,7 +11,7 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'Huntingslow_Pane_Aggregator_Md', // Base ID
-			__('Half Strap Aggregator', 'text_domain'), // Name
+			__('Aggregator (Half Strap)', 'text_domain'), // Name
 			array( 'description' => 'Collates posts from a particular category or tag.') // Args
 		);
 	}
@@ -59,21 +59,23 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 	  while ( $feature_post->have_posts() ) {
 		  $feature_post->the_post();
       // get the thumbnail
-			echo '<figure class="aggregator-md__featured-image">';
+			echo '<figure class="aggregator-md__featured-image"><a href="';
+			echo get_the_permalink();
+			echo '">';
 			the_post_thumbnail();
-			echo '</figure>';
-			echo '<h1 class="aggregator-md__featured-headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h1>';
+			echo '</a></figure>';
+			echo '<h1 class="aggregator-md__featured-headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h1><p class="single-lg__byline">By ';
 			if ( function_exists( 'coauthors_posts_links' ) ) {
 				coauthors_posts_links();
 			} else {
 				the_author_posts_link();
 			}
-      echo '<p class="aggregator-md__featured-standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
+      echo '</p><p class="aggregator-md__featured-standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
 	  }
 	  /* Restore original Post Data */
 	  wp_reset_postdata();
   } else {
-	  echo 'you fucked up the query';
+	  echo 'Something went wrong with the query.';
   }
 
   echo '</div><div class="aggregator-md__list">';
@@ -121,7 +123,7 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
     /* Restore original Post Data */
     wp_reset_postdata();
   } else {
-    echo 'you fucked up the query';
+    echo 'You made an error with the query. Try fixing the name of the category or tag you are trying to show';
   }
   echo '</div></div></div>';
   echo $args['after_widget']; ?>
@@ -153,16 +155,21 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
     <input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
     </p>
 
-	  <p>
+		<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'query_type' ) ); ?>"><?php _e( 'Show a:', 'wp_widget_plugin' ); ?></label>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'query_type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'query_type' ) ); ?>" type="text" value="<?php echo esc_attr( $query_type ); ?>" />
-		</p>
+		<select id="<?php echo esc_attr( $this->get_field_id( 'query_type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'query_type' ) ); ?>">
+			<option value="category"><?php _e( 'Category', 'wp_widget_plugin' ); ?></option>
+			<option value="tag"><?php _e( 'Tag', 'wp_widget_plugin' ); ?></option>
+		</select>
 
     <p>
     <label for="<?php echo esc_attr( $this->get_field_id( 'query_term' ) ); ?>"><?php _e( 'Name of category or tag (No caps):', 'wp_widget_plugin' ); ?></label>
     <input id="<?php echo esc_attr( $this->get_field_id( 'query_term' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'query_term' ) ); ?>" type="text" value="<?php echo esc_attr( $query_term ); ?>" />
     </p>
 
+		<hr>
+
+		<p>Optional:</p>
     <p>
     <label for="<?php echo esc_attr( $this->get_field_id( 'override_feature_URL' ) ); ?>"><?php _e( 'Feature override URL', 'wp_widget_plugin' ); ?></label>
     <input id="<?php echo esc_attr( $this->get_field_id( 'override_feature_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'override_feature_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $override_feature_URL ); ?>" />

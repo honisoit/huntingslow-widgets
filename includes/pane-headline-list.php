@@ -35,6 +35,7 @@ class Huntingslow_Pane_Headline_List extends WP_Widget {
 		) );
     echo $args['before_widget'];
 
+		echo '<div class="headline-list">';
 		echo '<h3 class="headline-list__title">' . $column_heading . '</h3>';
 		// The Loop
 		if ( $headlines->have_posts() ) {
@@ -54,6 +55,7 @@ class Huntingslow_Pane_Headline_List extends WP_Widget {
 			// no posts found
 		}
 
+		echo '</div>';
 		echo $args['after_widget'];
 	}
 	/**
