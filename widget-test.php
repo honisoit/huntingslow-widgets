@@ -3,7 +3,7 @@
 Plugin Name: Huntingslow Widget Pack
 Plugin URI: http://github.com/honisoit/
 Description: Luxe widgets for use with Honi Soit's Huntingslow theme
-Author: Honi Soit — Max Hall and Sam Langford
+Author: Honi Soit
 Version: 1.0
 Author URI: http://www.honisoit.com
 */
