@@ -27,40 +27,13 @@ require_once MY_PLUGIN_PATH . 'includes/pane-aggregator-md.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Widget_Single_Article' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Banner_Link' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Headline_List' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Popular' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Single_Lg' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Single_Md' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Single_Sm' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Link_Sm' );
-});
-
-add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Aggregator_Md' );
 });
