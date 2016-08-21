@@ -64,14 +64,16 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 			echo '">';
 			the_post_thumbnail();
 			echo '</a></figure>';
-			echo '<h1 class="aggregator-md__featured-headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h1><p class="single-lg__byline">By ';
+			echo '<h4 class="aggregator-md__featured-headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h4>';
+      echo '<p class="aggregator-md__featured-standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
+			echo '<p class="single-lg__byline">By ';
 			if ( function_exists( 'coauthors_posts_links' ) ) {
 				coauthors_posts_links();
 			} else {
 				the_author_posts_link();
 			}
-      echo '</p><p class="aggregator-md__featured-standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
-	  }
+			echo '</p>';
+		}
 	  /* Restore original Post Data */
 	  wp_reset_postdata();
   } else {
@@ -82,22 +84,22 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 
   // now for the list query
   $override_category_list_args = array(
-    'posts_per_page' => 5,
+    'posts_per_page' => 8,
     'category_name' => $query_term,
     'post__not_in' => array( $override_feature_ID )
   );
   $override_tag_list_args = array(
-    'posts_per_page' => 5,
+    'posts_per_page' => 8,
     'tag' => $query_term,
     'post__not_in' => array( $override_feature_ID )
   );
   $category_list_args = array(
-    'posts_per_page' => 5,
+    'posts_per_page' => 8,
     'offset' => 1,
     'category_name' => $query_term
   );
   $tag_list_args = array(
-    'posts_per_page' => 5,
+    'posts_per_page' => 8,
     'offset' => 1,
     'tag' => $query_term
   );
