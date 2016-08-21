@@ -10,7 +10,7 @@ class Huntingslow_Pane_Single_Sm extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'Huntingslow_Pane_Single_Sm', // Base ID
-			__('Quarter Strap Article', 'text_domain'), // Name
+			__('Article (Quarter Strap)', 'text_domain'), // Name
 			array( 'description' => 'Quarter width single article.') // Args
 		);
 	}
@@ -26,32 +26,63 @@ class Huntingslow_Pane_Single_Sm extends WP_Widget {
 	function widget( $args, $instance ) {
 
 		// Populate the variables from the saved instance
-		$story_URL = $instance['story_URL'];
-		// not sure that this is the best point in the logic to do this.
-		// possibly better to update on each save
-		$story_ID = url_to_postid( $story_URL );
+		$article_URL = $instance['article_URL'];
+		$display_image = $instance['display_image'];
 		$display_byline = $instance['display_byline'];
 		$display_primary_tag = $instance['display_primary_tag'];
-		$display_standfirst = $instance['display_standfirst'];
 
-		$headlines = new WP_Query( array(
-			'category_name' => 'news',
-			'posts_per_page' => 2
+		// TODO: Move this logic to the save function so it is only run once
+		$article_ID = url_to_postid( $article_URL );
+
+		// Run the query
+		$article = new WP_Query( array(
+			'p' => $article_ID
 		) );
 
-		// Set up the variables needed for the markup
+		// Spit the markup
+		echo $args['before_widget'];
 
-		// Spit out the markup
-    echo $args['before_widget'];
-		?>
+		if ( $article->have_posts() ) {
+			while ( $article->have_posts() ) {
+				$article->the_post(); ?>
 
-		<div class="single-sm">
-			<h1 class="single-sm__headline">Placeholder headline</h1>
-			<p class="single-sm__standfirst">Placeholder standfirst</p>
-		</div>
+				<div class="single-sm">
+					<?php if ($display_image == '1') {
+						echo '<figure class="single-sm__image"><a href="';
+						echo get_the_permalink();
+						echo '">';
+						the_post_thumbnail();
+						echo '</a></figure>';
+					}
 
-		<?php
-    wp_reset_postdata();
+					if ($display_primary_tag == '1') {
+						$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
+				    $primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
+				    $primary_tag = ucwords($primary_tag_array['name']);
+				    // We need to get the tag URL in a way that doesn't mess up when there are
+				    // special characters in the primary tag. Otherwise prevent their use.
+				    if ($primary_tag) {
+				      echo '<p class="single-sm__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
+			    	}
+					} ?>
+					<h1 class="single-sm__headline">
+						<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
+					</h1>
+					<p class="single-sm__byline">
+						By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
+							coauthors_posts_links();
+						} else {
+							the_author_posts_link();
+						} ?>
+					</p>
+				</div>
+
+				<?php
+			}
+			/* Restore original Post Data */
+			wp_reset_postdata();
+		}
+
 		echo $args['after_widget'];
 	}
 	/**
@@ -62,38 +93,41 @@ class Huntingslow_Pane_Single_Sm extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	function form( $instance ) {
-		// Check values
+		// Fill the form with saved data if it exists
 		if( $instance ) {
-			$story_URL = esc_attr( $instance['story_URL'] );
+			$article_URL = esc_attr( $instance['article_URL'] );
+			$display_image = esc_attr( $instance['display_image']);
 			$display_byline = esc_attr( $instance['display_byline'] );
 			$display_primary_tag = esc_attr( $instance['display_primary_tag'] );
-			$display_standfirst = esc_attr( $instance['display_standfirst'] );
 		} else {
-			$story_URL = '';
+			$article_URL = '';
+			$display_image = '';
 			$display_byline = '';
 			$display_primary_tag = '';
-			$display_standfirst = '';
 		}  ?>
+
 		<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>"><?php _e( 'Story URL:', 'wp_widget_plugin' ); ?></label>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'story_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'Story URL' ) ); ?>" type="text" value="<?php echo esc_attr( $story_URL ); ?>" />
+		<label for="<?php echo esc_attr( $this->get_field_id( 'article_URL' ) ); ?>"><?php _e( 'Article URL: ', 'wp_widget_plugin' ); ?></label>
+		<input id="<?php echo esc_attr( $this->get_field_id( 'article_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'article_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $article_URL ); ?>" />
+		</p>
+
+		<hr>
+
+		<p>Display:</p>
+		<p>
+		<input id="<?php echo esc_attr( $this->get_field_id( 'display_image' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display_image' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $display_image ); ?> />
+		<label for="<?php echo esc_attr( $this->get_field_id( 'display_image' ) ); ?>"><?php _e( 'Image', 'wp_widget_plugin' ); ?></label>
 		</p>
 
 		<p>
 		<input id="<?php echo esc_attr( $this->get_field_id( 'display_byline' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display_byline' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $display_byline ); ?> />
-		<label for="<?php echo esc_attr( $this->get_field_id( 'display_byline' ) ); ?>"><?php _e( 'Display byline.', 'wp_widget_plugin' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'display_byline' ) ); ?>"><?php _e( 'Byline', 'wp_widget_plugin' ); ?></label>
 		</p>
 
 		<p>
 		<input id="<?php echo esc_attr( $this->get_field_id( 'display_primary_tag' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display_primary_tag' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $display_primary_tag ); ?> />
-		<label for="<?php echo esc_attr( $this->get_field_id( 'display_primary_tag' ) ); ?>"><?php _e( 'Display primary tag', 'wp_widget_plugin' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'display_primary_tag' ) ); ?>"><?php _e( 'Primary tag', 'wp_widget_plugin' ); ?></label>
 		</p>
-
-		<p>
-		<input id="<?php echo esc_attr( $this->get_field_id( 'display_standfirst' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display_standfirst' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $display_standfirst ); ?> />
-		<label for="<?php echo esc_attr( $this->get_field_id( 'display_standfirst' ) ); ?>"><?php _e( 'Display standfirst', 'wp_widget_plugin' ); ?></label>
-		</p>
-
 
 	<?php
 	}
@@ -111,10 +145,10 @@ class Huntingslow_Pane_Single_Sm extends WP_Widget {
 	 function update($new_instance, $old_instance) {
        $instance = $old_instance;
        // Fields
-			 $instance['story_URL'] = strip_tags($new_instance['story_URL']);
+			 $instance['article_URL'] = strip_tags($new_instance['article_URL']);
+			 $instance['display_image'] = strip_tags($new_instance['display_image']);
 			 $instance['display_byline'] = strip_tags($new_instance['display_byline']);
 			 $instance['display_primary_tag'] = strip_tags($new_instance['display_primary_tag']);
-			 $instance['display_standfirst'] = strip_tags($new_instance['display_standfirst']);
 
       return $instance;
  }
