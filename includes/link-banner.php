@@ -10,7 +10,7 @@ class Huntingslow_Pane_Banner_Link extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'Huntingslow_Pane_Banner_Link', // Base ID
-			__('Banner Link', 'text_domain'), // Name
+			__('Link (Banner)', 'text_domain'), // Name
 			array( 'description' => 'Full width, text only link to an article. Ideal for breaking news.') // Args
 		);
 	}
@@ -34,11 +34,11 @@ class Huntingslow_Pane_Banner_Link extends WP_Widget {
 			'posts_per_page' => 2
 		) );
     echo $args['before_widget'];
-    echo '<div class="pane-banner-link';
+    echo '<div class="link-banner';
     if ( $is_breaking_news == '1' ) {
-      echo ' pane-banner-link--breaking';
+      echo ' link-banner--breaking';
     }
-    echo '"><h4 class="pane-banner-link__text"><a href="'. $link_URL .'">'. $banner_text .'</a></h4></div>';
+    echo '"><h4 class="link-banner__text"><a href="'. $link_URL .'">'. $banner_text .'</a></h4></div>';
 
     wp_reset_postdata();
 
