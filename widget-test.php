@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: My Widget
-Plugin URI: http://mydomain.com
-Description: My first widget
-Author: Me
+Plugin Name: Huntingslow Widget Pack
+Plugin URI: http://github.com/honisoit/
+Description: Luxe widgets for use with Honi Soit's Huntingslow theme
+Author: Honi Soit — Max Hall and Sam Langford
 Version: 1.0
-Author URI: http://mydomain.com
+Author URI: http://www.honisoit.com
 */
 // Block direct requests
 if ( !defined('ABSPATH') )
