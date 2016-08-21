@@ -65,9 +65,9 @@ class Huntingslow_Pane_Single_Sm extends WP_Widget {
 				      echo '<p class="single-sm__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
 			    	}
 					} ?>
-					<h1 class="single-sm__headline">
+					<h4 class="single-sm__headline">
 						<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
-					</h1>
+					</h4>
 					<p class="single-sm__byline">
 						By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
 							coauthors_posts_links();
