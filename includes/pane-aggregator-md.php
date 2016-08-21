@@ -39,6 +39,7 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
   // spit that initial markup
 	echo $args['before_widget'];
   echo '<div class="aggregator-md"><h1 class="aggregator-md__title">'. $title . '</h1>';
+	echo '<div class="flex-container">';
 	echo '<div class="aggregator-md__featured">';
 
   // do the feature query
@@ -122,7 +123,7 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
   } else {
     echo 'you fucked up the query';
   }
-  echo '</div></div>';
+  echo '</div></div></div>';
   echo $args['after_widget']; ?>
 
 	<?php }
