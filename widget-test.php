@@ -23,6 +23,9 @@ require_once MY_PLUGIN_PATH . 'includes/pane-single-md.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-single-sm.php';
 require_once MY_PLUGIN_PATH . 'includes/pane-link-sm.php';
 require_once MY_PLUGIN_PATH . 'includes/aggregator-md.php';
+require_once MY_PLUGIN_PATH . 'includes/frame-lg.php';
+require_once MY_PLUGIN_PATH . 'includes/frame-md.php';
+require_once MY_PLUGIN_PATH . 'includes/frame-sm.php';
 
 add_action( 'widgets_init', function(){
      register_widget( 'Widget_Related' );
@@ -34,4 +37,7 @@ add_action( 'widgets_init', function(){
      register_widget( 'Huntingslow_Pane_Single_Sm' );
      register_widget( 'Huntingslow_Pane_Link_Sm' );
      register_widget( 'Huntingslow_Pane_Aggregator_Md' );
+		 register_widget( 'Huntingslow_Frame_Lg' );
+		 register_widget( 'Huntingslow_Frame_Md' );
+		 register_widget( 'Huntingslow_Frame_Sm' );
 });
