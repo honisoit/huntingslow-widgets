@@ -44,8 +44,10 @@ class Huntingslow_Pane_Headline_List extends WP_Widget {
 				if ( $display_topic_tags == '1' ) {
 					$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
 					$primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
-
-					echo '<p class="headline-list__primary-tag"><a>' . ucwords($primary_tag_array['name']) . '</a></p>';
+					$primary_tag = ucwords($primary_tag_array['name']);
+					if ( !$primary_tag == '' ) {
+						echo '<p class="headline-list__primary-tag"><a>' . $primary_tag . '</a></p>';
+					}
 				}
 				echo '<p class="headline-list__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p>';
 			}
