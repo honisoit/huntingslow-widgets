@@ -66,7 +66,7 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 			echo '</a></figure>';
 			echo '<h4 class="aggregator-md__featured-headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h4>';
       echo '<p class="aggregator-md__featured-standfirst">' . get_post_meta( get_the_id(), 'standfirst', true) . '</p>';
-			echo '<p class="single-lg__byline">By ';
+			echo '<p class="single-lg__byline aggregator-md__featured-byline">By ';
 			if ( function_exists( 'coauthors_posts_links' ) ) {
 				coauthors_posts_links();
 			} else {
