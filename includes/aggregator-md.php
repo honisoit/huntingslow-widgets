@@ -84,22 +84,22 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
 
   // now for the list query
   $override_category_list_args = array(
-    'posts_per_page' => 8,
+    'posts_per_page' => 5,
     'category_name' => $query_term,
     'post__not_in' => array( $override_feature_ID )
   );
   $override_tag_list_args = array(
-    'posts_per_page' => 8,
+    'posts_per_page' => 5,
     'tag' => $query_term,
     'post__not_in' => array( $override_feature_ID )
   );
   $category_list_args = array(
-    'posts_per_page' => 8,
+    'posts_per_page' => 5,
     'offset' => 1,
     'category_name' => $query_term
   );
   $tag_list_args = array(
-    'posts_per_page' => 8,
+    'posts_per_page' => 5,
     'offset' => 1,
     'tag' => $query_term
   );
@@ -120,6 +120,10 @@ class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
     while ( $list_posts->have_posts() ) {
       $list_posts->the_post();
       // get the thumbnail
+			$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
+			$primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
+			$primary_tag = ucwords($primary_tag_array['name']);
+			echo '<p class="aggregator-md__primary-tag"><a href="">' . $primary_tag . '</a></p>';
       echo '<p class="aggregator-md__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p>';
     }
     /* Restore original Post Data */
