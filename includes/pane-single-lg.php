@@ -76,27 +76,32 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 							<p class="single-lg__standfirst">
 								<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
 							</p>
+							
 							<?php if ( $display_excerpt == '1' ) {
 								echo '<div class="single-lg__excerpt">';
 								the_excerpt();
 								echo '</div>';
 							}
-							?>
-							<p class="single-lg__byline">
-								By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
+
+							if ( $display_byline == '1' ) {
+								echo '<p class="single-lg__byline">By ';
+								if ( function_exists( 'coauthors_posts_links' ) ) {
 									coauthors_posts_links();
 								} else {
 									the_author_posts_link();
-								} ?>
-							</p>
-							<?php if ( ! $related_one_URL == '') {
+								}
+								echo '</p>';
+							}
+
+							if ( ! $related_one_URL == '') {
 								$related_one_ID = url_to_postid( $related_one_URL );
 								$related_one_post = get_post( $related_one_ID );
 								echo '<span class="single-lg__related-one">';
 								echo $related_one_post->post_title;
 								echo '</span>';
-							} ?>
-							<?php if ( ! $related_two_URL == '') {
+							}
+
+							if ( ! $related_two_URL == '') {
 								$related_two_ID = url_to_postid( $related_two_URL );
 								$related_two_post = get_post( $related_two_ID );
 								echo '<span class="single-lg__related-two">';
