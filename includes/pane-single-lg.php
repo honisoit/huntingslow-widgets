@@ -73,11 +73,14 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 							<h1 class="single-lg__headline">
 								<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
 							</h1>
-							<p class="single-lg__standfirst">
-								<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
-							</p>
-							
-							<?php if ( $display_excerpt == '1' ) {
+							<?php if ( $display_standfirst == '1' ) {
+								$standfirst = get_post_meta( get_the_id(), 'standfirst', true);
+								echo '<p class="single-lg__standfirst">';
+								echo $standfirst;
+								echo '</p>';
+							}
+
+							if ( $display_excerpt == '1' ) {
 								echo '<div class="single-lg__excerpt">';
 								the_excerpt();
 								echo '</div>';
