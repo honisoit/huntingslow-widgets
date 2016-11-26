@@ -52,50 +52,29 @@ class Huntingslow_Pane_Single_Lg extends WP_Widget {
 
 				<div class="single-lg">
 					<div class="flex-container">
-						<?php if ($display_image == '1') {
-							echo '<figure class="single-lg__image"><a href="';
-							echo get_the_permalink();
-							echo '">';
-							the_post_thumbnail();
-							echo '</a></figure>';
-						} ?>
+						<?php if ($display_image == '1') : ?>
+							<figure class="single-lg__image">
+								<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+							</figure>
+						<?php endif; ?>
 						<div class="single-lg__copy">
-							<?php if ($display_primary_tag == '1') {
-								$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
-						    $primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
-						    $primary_tag = ucwords($primary_tag_array['name']);
-						    // We need to get the tag URL in a way that doesn't mess up when there are
-						    // special characters in the primary tag. Otherwise prevent their use.
-						    if ($primary_tag) {
-						      echo '<p class="single-lg__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
-						    }
-							} ?>
+							<?php if ( $display_primary_tag == '1' ) : ?>
+						  	<p class="single-lg__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
+							<?php endif; ?>
 							<h1 class="single-lg__headline">
 								<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
 							</h1>
-							<?php if ( $display_standfirst == '1' ) {
-								$standfirst = get_post_meta( get_the_id(), 'standfirst', true);
-								echo '<p class="single-lg__standfirst">';
-								echo $standfirst;
-								echo '</p>';
-							}
-
-							if ( $display_excerpt == '1' ) {
-								echo '<div class="single-lg__excerpt">';
-								the_excerpt();
-								echo '</div>';
-							}
-
-							if ( $display_byline == '1' ) {
-								echo '<p class="single-lg__byline">By ';
-								if ( function_exists( 'coauthors_posts_links' ) ) {
-									coauthors_posts_links();
-								} else {
-									the_author_posts_link();
-								}
-								echo '</p>';
-							}
-
+							<?php if ( $display_standfirst == '1' ) :
+								$standfirst = get_post_meta( get_the_id(), 'standfirst', true); ?>
+								<p class="single-lg__standfirst"><?php echo esc_html( $standfirst ); ?></p>
+							<?php endif;
+							if ( $display_excerpt == '1' ) : ?>
+								<div class="single-lg__excerpt"><?php the_excerpt(); ?></div>
+							<?php endif;
+							if ( $display_byline == '1' ) : ?>
+								<p class="single-lg__byline">By <?php get_the_byline_link(); ?></p>
+							<?php endif;
+							// reworked up to here
 							if ( ! $related_one_URL == '') {
 								$related_one_ID = url_to_postid( $related_one_URL );
 								$related_one_post = get_post( $related_one_ID );
