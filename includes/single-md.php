@@ -47,35 +47,22 @@ class Huntingslow_Single_Md extends WP_Widget {
 				$article->the_post(); ?>
 
 				<div class="single-md">
-					<?php
-					echo '<figure class="single-md__image"><a href="';
-					echo get_the_permalink();
-					echo '">';
-					the_post_thumbnail();
-					echo '</a></figure>';
-					if ($display_primary_tag == '1') {
-						$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
-				    $primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
-				    $primary_tag = ucwords($primary_tag_array['name']);
-				    // We need to get the tag URL in a way that doesn't mess up when there are
-				    // special characters in the primary tag. Otherwise prevent their use.
-				    if ($primary_tag) {
-				      echo '<p class="single-md__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
-			    	}
-					} ?>
+					<figure class="single-md__image">
+						<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+					</figure>
+					<?php if ( $display_primary_tag == '1' ) : ?>
+						<p class="single-md__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
+					<?php endif; ?>
 					<h3 class="single-md__headline">
-						<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
+						<a href="<?php get_the_permalink() ?>"><?php get_the_title() ?></a>
 					</h3>
-					<p class="single-md__standfirst">
-						<?php echo $standfirst = ($display_standfirst == '1' ? get_post_meta( get_the_id(), 'standfirst', true) : ''); ?>
-					</p>
-					<p class="single-md__byline">
-						By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
-							coauthors_posts_links();
-						} else {
-							the_author_posts_link();
-						} ?>
-					</p>
+					<?php if ( $display_standfirst == '1' ) :
+						$standfirst = get_post_meta( get_the_id(), 'standfirst', true); ?>
+						<p class="single-md__standfirst"><?php echo esc_html( $standifrst ); ?></p>
+					<?php endif;
+					if ( $display_byline == '1' ) : ?>
+						<p class="single-md__byline">By <?php get_the_byline_link(); ?></p>
+					<?php endif; ?>
 				</div>
 
 				<?php
