@@ -29,13 +29,13 @@ class Huntingslow_Frame_Md extends WP_Widget {
 		$shortcode = $instance['shortcode'];
 
 		// Spit the markup
-		echo $args['before_widget'];
+		echo $args['before_widget']; ?>
 
-		echo '<div class="frame-lg">';
-		echo do_shortcode( $shortcode );
-		echo '</div>';
+		<div class="frame-md">
+			<?php echo do_shortcode( $shortcode ); ?>
+		</div>
 
-		echo $args['after_widget'];
+		<?php echo $args['after_widget'];
 	}
 	/**
 	 * Back-end widget form.
