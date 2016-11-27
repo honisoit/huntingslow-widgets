@@ -75,21 +75,16 @@ class Huntingslow_Single_Lg extends WP_Widget {
 								<p class="single-lg__byline">By <?php get_the_byline_link(); ?></p>
 							<?php endif;
 							// reworked up to here
-							if ( ! $related_one_URL == '') {
+							if ( ! empty( $related_one_URL ) ) :
 								$related_one_ID = url_to_postid( $related_one_URL );
-								$related_one_post = get_post( $related_one_ID );
-								echo '<span class="single-lg__related-one">';
-								echo $related_one_post->post_title;
-								echo '</span>';
-							}
-
-							if ( ! $related_two_URL == '') {
+								$related_one_post = get_post( $related_one_ID ); ?>
+								<span class="single-lg__related-one"><?php echo esc_html( $related_one_post->post_title ); ?></span>
+							<?php endif;
+							if ( ! empty( $related_two_URL ) ) :
 								$related_two_ID = url_to_postid( $related_two_URL );
-								$related_two_post = get_post( $related_two_ID );
-								echo '<span class="single-lg__related-two">';
-								echo $related_two_post->post_title;
-								echo '</span>';
-							} ?>
+								$related_two_post = get_post( $related_two_ID ); ?>
+								<span class="single-lg__related-two"><?php echo esc_html($related_two_post->post_title); ?></span>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
