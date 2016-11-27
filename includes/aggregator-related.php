@@ -30,7 +30,7 @@ class Huntingslow_Aggregator_Related extends WP_Widget {
 		// Start the widget content
 		echo $args['before_widget'];
 		echo '<div class="aggregator-related"><h3 class="related__title">';
-		echo $title
+		echo $title;
 		echo '</h3>';
 
 		// If jetpack exists, query the related posts and spit the markup
