@@ -47,34 +47,20 @@ class Huntingslow_Single_Sm extends WP_Widget {
 				$article->the_post(); ?>
 
 				<div class="single-sm">
-					<?php if ($display_image == '1') {
-						echo '<figure class="single-sm__image"><a href="';
-						echo get_the_permalink();
-						echo '">';
-						the_post_thumbnail();
-						echo '</a></figure>';
-					}
-
-					if ($display_primary_tag == '1') {
-						$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
-				    $primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
-				    $primary_tag = ucwords($primary_tag_array['name']);
-				    // We need to get the tag URL in a way that doesn't mess up when there are
-				    // special characters in the primary tag. Otherwise prevent their use.
-				    if ($primary_tag) {
-				      echo '<p class="single-sm__primary-tag"><a href="/tag/' . $primary_tag .'">' . $primary_tag . '</a></p>';
-			    	}
-					} ?>
+					<?php if ($display_image == '1') : ?>
+						<figure class="single-sm__image">
+							<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+						</figure>
+					<?php endif;
+					if ( $display_primary_tag == '1' ) : ?>
+						<p class="single-sm__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
+					<?php endif; ?>
 					<h4 class="single-sm__headline">
-						<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
+						<a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
 					</h4>
-					<p class="single-sm__byline">
-						By <?php if ( $display_byline == '1' && function_exists( 'coauthors_posts_links' ) ) {
-							coauthors_posts_links();
-						} else {
-							the_author_posts_link();
-						} ?>
-					</p>
+					<?php if ( $display_byline == '1' ) : ?>
+						<p class="single-sm__byline">By <?php get_the_byline_link(); ?></p>
+					<?php endif; ?>
 				</div>
 
 				<?php

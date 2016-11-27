@@ -54,11 +54,11 @@ class Huntingslow_Single_Md extends WP_Widget {
 						<p class="single-md__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
 					<?php endif; ?>
 					<h3 class="single-md__headline">
-						<a href="<?php get_the_permalink() ?>"><?php get_the_title() ?></a>
+						<a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
 					</h3>
 					<?php if ( $display_standfirst == '1' ) :
 						$standfirst = get_post_meta( get_the_id(), 'standfirst', true); ?>
-						<p class="single-md__standfirst"><?php echo esc_html( $standifrst ); ?></p>
+						<p class="single-md__standfirst"><?php echo esc_html( $standfirst ); ?></p>
 					<?php endif;
 					if ( $display_byline == '1' ) : ?>
 						<p class="single-md__byline">By <?php get_the_byline_link(); ?></p>

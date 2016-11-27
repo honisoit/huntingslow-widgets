@@ -62,7 +62,7 @@ class Huntingslow_Single_Lg extends WP_Widget {
 						  	<p class="single-lg__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
 							<?php endif; ?>
 							<h1 class="single-lg__headline">
-								<?php echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'; ?>
+								<a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
 							</h1>
 							<?php if ( $display_standfirst == '1' ) :
 								$standfirst = get_post_meta( get_the_id(), 'standfirst', true); ?>
