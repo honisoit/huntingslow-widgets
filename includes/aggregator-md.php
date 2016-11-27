@@ -4,13 +4,13 @@
 /**
 * Medium (half strap) category or tag widget.
 */
-class Huntingslow_Pane_Aggregator_Md extends WP_Widget {
+class Huntingslow_Aggregator_Md extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Aggregator_Md', // Base ID
+			'Huntingslow_Aggregator_Md', // Base ID
 			__('Aggregator (Half Strap)', 'text_domain'), // Name
 			array( 'description' => 'Collates posts from a particular category or tag.') // Args
 		);

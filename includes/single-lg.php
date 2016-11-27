@@ -3,13 +3,13 @@
 /**
  * Large (full width) single article display widget.
  */
-class Huntingslow_Pane_Single_Lg extends WP_Widget {
+class Huntingslow_Single_Lg extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Single_Lg', // Base ID
+			'Huntingslow_Single_Lg', // Base ID
 			__('Article (Full Strap)', 'text_domain'), // Name
 			array( 'description' => 'Full width single article.') // Args
 		);

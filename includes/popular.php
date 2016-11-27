@@ -3,13 +3,13 @@
 /**
  * Adds top 5 list widget.
  */
-class Huntingslow_Pane_Popular extends WP_Widget {
+class Huntingslow_Popular extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Popular', // Base ID
+			'Huntingslow_Popular', // Base ID
 			__('Top 5 list', 'text_domain'), // Name
 			array( 'description' => 'Display top 5 posts from around the site') // Args
 		);

@@ -3,13 +3,13 @@
 /**
  * Medium (half width) single article display widget.
  */
-class Huntingslow_Pane_Single_Md extends WP_Widget {
+class Huntingslow_Single_Md extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Single_Md', // Base ID
+			'Huntingslow_Single_Md', // Base ID
 			__('Article (Half Strap)', 'text_domain'), // Name
 			array( 'description' => 'Half width single article.') // Args
 		);

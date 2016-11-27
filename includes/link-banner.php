@@ -3,13 +3,13 @@
 /**
  * Banner link widget.
  */
-class Huntingslow_Pane_Banner_Link extends WP_Widget {
+class Huntingslow_Link_Banner extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Banner_Link', // Base ID
+			'Huntingslow_Link_Banner', // Base ID
 			__('Link (Banner)', 'text_domain'), // Name
 			array( 'description' => 'Full width, text only link to an article. Ideal for breaking news.') // Args
 		);

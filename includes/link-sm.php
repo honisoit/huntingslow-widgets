@@ -3,13 +3,13 @@
 /**
  * Small (Quarter of a strap) link widget.
  */
-class Huntingslow_Pane_Link_Sm extends WP_Widget {
+class Huntingslow_Link_Sm extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Link_Sm', // Base ID
+			'Huntingslow_Link_Sm', // Base ID
 			__('Quarter Strap Link', 'text_domain'), // Name
 			array( 'description' => 'Text link that occupies a quarter of a strap. E.g. Callout or tip off box.') // Args
 		);

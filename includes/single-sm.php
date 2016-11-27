@@ -3,13 +3,13 @@
 /**
  * Small (quarter width) single article display widget.
  */
-class Huntingslow_Pane_Single_Sm extends WP_Widget {
+class Huntingslow_Single_Sm extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Huntingslow_Pane_Single_Sm', // Base ID
+			'Huntingslow_Single_Sm', // Base ID
 			__('Article (Quarter Strap)', 'text_domain'), // Name
 			array( 'description' => 'Quarter width single article.') // Args
 		);
