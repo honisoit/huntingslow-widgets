@@ -24,7 +24,6 @@ class Huntingslow_Headline_List extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	function widget( $args, $instance ) {
-
 		$column_heading = $instance['column_heading'];
 		$number_of_headlines = $instance['number_of_headlines'];
 		$display_topic_tags = $instance['display_topic_tags'];
@@ -33,32 +32,27 @@ class Huntingslow_Headline_List extends WP_Widget {
 			'category_name' => 'news',
 			'posts_per_page' => $number_of_headlines
 		) );
-    echo $args['before_widget'];
 
-		echo '<div class="headline-list">';
-		echo '<h3 class="headline-list__title">' . $column_heading . '</h3>';
-		// The Loop
-		if ( $headlines->have_posts() ) {
-			while ( $headlines->have_posts() ) {
-				$headlines->the_post();
-				if ( $display_topic_tags == '1' ) {
-					$primary_tag_id = get_post_meta( get_the_id(), 'primary_tag', true );
-					$primary_tag_array = get_term_by( 'id', $primary_tag_id, 'post_tag', ARRAY_A);
-					$primary_tag = ucwords($primary_tag_array['name']);
-					if ( !$primary_tag == '' ) {
-						echo '<p class="headline-list__primary-tag"><a>' . $primary_tag . '</a></p>';
-					}
-				}
-				echo '<p class="headline-list__headline"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p>';
-			}
-			/* Restore original Post Data */
-			wp_reset_postdata();
-		} else {
-			// no posts found
-		}
+    echo $args['before_widget']; ?>
 
-		echo '</div>';
-		echo $args['after_widget'];
+		<div class="headline-list">
+			<h3 class="headline-list__title"><?php esc_html( $column_heading ); ?></h3>
+			<?php // The Loop
+			if ( $headlines->have_posts() ) {
+				while ( $headlines->have_posts() ) {
+					$headlines->the_post();
+					if ( $display_topic_tags == '1' ) : ?>
+							<p class="headline-list__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
+					<?php endif; ?>
+					<p class="headline-list__headline"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></p>
+				<?php }
+				/* Restore original Post Data */
+				wp_reset_postdata();
+			} else {
+				echo '<p>No posts were found</p>';
+			} ?>
+		</div>
+		<?php echo $args['after_widget'];
 	}
 	/**
 	 * Back-end widget form.
@@ -88,7 +82,7 @@ class Huntingslow_Headline_List extends WP_Widget {
 		</p>
 		<p>
 		<input id="<?php echo esc_attr( $this->get_field_id( 'display_topic_tags' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display_topic_tags' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $display_topic_tags ); ?> />
-		<label for="<?php echo esc_attr( $this->get_field_id( 'display_topic_tags' ) ); ?>"><?php _e( 'Display topic tags', 'wp_widget_plugin' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'display_topic_tags' ) ); ?>"><?php _e( 'Display primary tags', 'wp_widget_plugin' ); ?></label>
 		</p>
 
 	<?php
