@@ -33,14 +33,18 @@ class Huntingslow_Link_Banner extends WP_Widget {
 			'category_name' => 'news',
 			'posts_per_page' => 2
 		) );
-    echo $args['before_widget'];
-    echo '<div class="link-banner';
-    if ( $is_breaking_news == '1' ) {
-      echo ' link-banner--breaking';
-    }
-    echo '"><h4 class="link-banner__text"><a href="'. $link_URL .'">'. $banner_text .'</a></h4></div>';
+    echo $args['before_widget']; ?>
+    <div class="link-banner <?php
+	    if ( $is_breaking_news == '1' ) {
+	      echo esc_attr('link-banner--breaking');
+	    }
+		?>">
+			<h4 class="link-banner__text">
+				<a href="<?php echo esc_url( $link_URL ); ?>"><?php echo esc_html( $banner_text ); ?></a>
+			</h4>
+		</div>
 
-    wp_reset_postdata();
+    <?php wp_reset_postdata();
 
 		echo $args['after_widget'];
 	}
