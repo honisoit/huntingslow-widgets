@@ -33,10 +33,12 @@ class Huntingslow_Link_Sm extends WP_Widget {
 
 		echo $args['before_widget']; ?>
     <div class="link-sm">
-			<a href="<?php echo esc_url( $link_URL ); ?>">
-				<h3 class="link-sm__title"><?php echo esc_html( $link_title ); ?></h3>
-    		<p class="link-sm__text"><?php echo esc_html( $link_text ); ?></p>
-			</a>
+			<div class="link-sm__content">
+				<a href="<?php echo esc_url( $link_URL ); ?>">
+					<h3 class="link-sm__title"><?php echo esc_html( $link_title ); ?></h3>
+    			<p class="link-sm__text"><?php echo esc_html( $link_text ); ?></p>
+				</a>
+			</div>
 		</div>
     <?php echo $args['after_widget'];
 	}

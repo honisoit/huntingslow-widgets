@@ -51,8 +51,10 @@ class Huntingslow_Single_Sm extends WP_Widget {
 						<figure class="single-sm__image">
 							<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
 						</figure>
-					<?php endif;
-					if ( $display_primary_tag == '1' ) : ?>
+					<?php endif; ?>
+
+					<div class="single-sm__text">
+					<?php if ( $display_primary_tag == '1' ) : ?>
 						<p class="single-sm__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>
 					<?php endif; ?>
 					<h4 class="single-sm__headline">
@@ -61,6 +63,7 @@ class Huntingslow_Single_Sm extends WP_Widget {
 					<?php if ( $display_byline == '1' ) : ?>
 						<p class="single-sm__byline">By <?php get_the_byline_link(); ?></p>
 					<?php endif; ?>
+					</div> 
 				</div>
 
 				<?php
