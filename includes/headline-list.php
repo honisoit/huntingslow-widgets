@@ -36,7 +36,7 @@ class Huntingslow_Headline_List extends WP_Widget {
     echo $args['before_widget']; ?>
 
 		<div class="headline-list">
-			<h3 class="headline-list__title"><?php esc_html( $column_heading ); ?></h3>
+			<h3 class="headline-list__title"><?php echo esc_html( $column_heading ); ?></h3>
 			<?php // The Loop
 			if ( $headlines->have_posts() ) {
 				while ( $headlines->have_posts() ) {
