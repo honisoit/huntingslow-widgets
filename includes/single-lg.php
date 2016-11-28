@@ -74,17 +74,16 @@ class Huntingslow_Single_Lg extends WP_Widget {
 							if ( $display_byline == '1' ) : ?>
 								<p class="single-lg__byline">By <?php get_the_byline_link(); ?></p>
 							<?php endif;
-							// reworked up to here
-							if ( ! empty( $related_one_URL ) ) :
-								$related_one_ID = url_to_postid( $related_one_URL );
-								$related_one_post = get_post( $related_one_ID ); ?>
-								<span class="single-lg__related-one"><?php echo esc_html( $related_one_post->post_title ); ?></span>
-							<?php endif;
-							if ( ! empty( $related_two_URL ) ) :
-								$related_two_ID = url_to_postid( $related_two_URL );
-								$related_two_post = get_post( $related_two_ID ); ?>
-								<span class="single-lg__related-two"><?php echo esc_html($related_two_post->post_title); ?></span>
-							<?php endif; ?>
+							//if ( ! empty( $related_one_URL ) ) :
+								//$related_one_ID = url_to_postid( $related_one_URL );
+								//$related_one_post = get_post( $related_one_ID );
+								//<span class="single-lg__related-one"><?php echo esc_html( $related_one_post->post_title ); </span>
+							// endif;
+							//if ( ! empty( $related_two_URL ) ) :
+							//	$related_two_ID = url_to_postid( $related_two_URL );
+							//	$related_two_post = get_post( $related_two_ID );
+								//<span class="single-lg__related-two"><?php echo esc_html($related_two_post->post_title); </span>
+							// <?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -160,12 +159,12 @@ class Huntingslow_Single_Lg extends WP_Widget {
 		</p>
 
 		<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'related_one_URL' ) ); ?>"><?php _e( 'Related article one URL: ', 'wp_widget_plugin' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'related_one_URL' ) ); ?>"><?php _e( '(Not functioning yet, soz.) Related article one URL: ', 'wp_widget_plugin' ); ?></label>
 		<input id="<?php echo esc_attr( $this->get_field_id( 'related_one_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'related_one_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $related_one_URL ); ?>" />
 		</p>
 
 		<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'related_two_URL' ) ); ?>"><?php _e( 'Related article two URL: ', 'wp_widget_plugin' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'related_two_URL' ) ); ?>"><?php _e( '(Not functioning yet, soz.) Related article two URL: ', 'wp_widget_plugin' ); ?></label>
 		<input id="<?php echo esc_attr( $this->get_field_id( 'related_two_URL' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'related_two_URL' ) ); ?>" type="text" value="<?php echo esc_attr( $related_two_URL ); ?>" />
 		</p>
 

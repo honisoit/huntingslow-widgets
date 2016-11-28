@@ -10,7 +10,7 @@ class Huntingslow_Link_Sm extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'Huntingslow_Link_Sm', // Base ID
-			__('Quarter Strap Link', 'text_domain'), // Name
+			__('Link (Quarter Strap)', 'text_domain'), // Name
 			array( 'description' => 'Text link that occupies a quarter of a strap. E.g. Callout or tip off box.') // Args
 		);
 	}
@@ -77,7 +77,7 @@ class Huntingslow_Link_Sm extends WP_Widget {
     </p>
 
     <p>
-    <label for="<?php echo esc_attr( $this->get_field_id( 'link_color' ) ); ?>"><?php _e( 'Background Color: (Use a hex value.)', 'wp_widget_plugin' ); ?></label>
+    <label for="<?php echo esc_attr( $this->get_field_id( 'link_color' ) ); ?>"><?php _e( 'Background Color: (This does not currently work, sorry.)', 'wp_widget_plugin' ); ?></label>
     <input id="<?php echo esc_attr( $this->get_field_id( 'link_color' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'link_color' ) ); ?>" type="text" value="<?php echo esc_attr( $link_color ); ?>" />
     </p>
 
