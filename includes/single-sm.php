@@ -42,7 +42,7 @@ class Huntingslow_Single_Sm extends WP_Widget {
 		// Spit the markup
 		echo $args['before_widget'];
 
-		if ( $article->have_posts() ) {
+		if ( $article->have_posts() && $article->post_count == '1' ) {
 			while ( $article->have_posts() ) {
 				$article->the_post(); ?>
 
@@ -63,13 +63,15 @@ class Huntingslow_Single_Sm extends WP_Widget {
 					<?php if ( $display_byline == '1' ) : ?>
 						<p class="single-sm__byline">By <?php get_the_byline_link(); ?></p>
 					<?php endif; ?>
-					</div> 
+					</div>
 				</div>
 
 				<?php
 			}
 			/* Restore original Post Data */
 			wp_reset_postdata();
+		} else {
+			echo '<p>Something went wrong. Try checking the URL of the post you are trying to display.</p>';
 		}
 
 		echo $args['after_widget'];

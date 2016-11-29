@@ -46,7 +46,7 @@ class Huntingslow_Single_Lg extends WP_Widget {
 		// Spit the markup
 		echo $args['before_widget'];
 
-		if ( $article->have_posts() ) {
+		if ( $article->have_posts() && $article->post_count == '1' ) {
 			while ( $article->have_posts() ) {
 				$article->the_post(); ?>
 
@@ -92,6 +92,8 @@ class Huntingslow_Single_Lg extends WP_Widget {
 			}
 			/* Restore original Post Data */
 			wp_reset_postdata();
+		} else {
+			print '<p>Something went wrong. Try checking the URL of the post you are trying to display.</p>';
 		}
 
 		echo $args['after_widget'];
