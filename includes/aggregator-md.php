@@ -36,10 +36,22 @@ class Huntingslow_Aggregator_Md extends WP_Widget {
   $feature_is_overriden = '0';
   $override_feature_ID = '6';
 
+	if ( $query_type == 'category' ) {
+		$category_object = get_category_by_slug( $query_term );
+		$category_id = $category_object->term_id;
+		$title_url = get_category_link( $category_id );
+	} else {
+		$tag_object = get_term_by( 'slug', $query_term, 'post_tag');
+		$tag_id = $tag_object->term_id;
+		$title_url = get_tag_link( $tag_id );
+	}
+
   // spit that initial markup
 	echo $args['before_widget']; ?>
   <div class="aggregator-md">
-		<h1 class="aggregator-md__title"><?php echo esc_html( $title ); ?></h1>
+		<h1 class="aggregator-md__title">
+			<a href="<?php echo esc_url( $title_url ); ?>"><?php echo esc_html( $title ); ?></a>
+		</h1>
 		<div class="flex-container">
 			<div class="aggregator-md__featured">
 			  <?php // do the feature query
@@ -162,7 +174,7 @@ class Huntingslow_Aggregator_Md extends WP_Widget {
 		</select>
 
     <p>
-    <label for="<?php echo esc_attr( $this->get_field_id( 'query_term' ) ); ?>"><?php _e( 'Name of category or tag (No caps):', 'wp_widget_plugin' ); ?></label>
+    <label for="<?php echo esc_attr( $this->get_field_id( 'query_term' ) ); ?>"><?php _e( 'Slug of the category or tag. Generally all lowercase and dashes for spaces, but check the relevant category or tag pag if in doubt:', 'wp_widget_plugin' ); ?></label>
     <input id="<?php echo esc_attr( $this->get_field_id( 'query_term' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'query_term' ) ); ?>" type="text" value="<?php echo esc_attr( $query_term ); ?>" />
     </p>
 
