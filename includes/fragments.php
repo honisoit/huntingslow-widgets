@@ -15,7 +15,9 @@ function get_the_primary_tag_link() {
   } else {
     $the_category = get_the_category();
     $category_name = $the_category[0]->name;
-    $html = '<a>' . esc_html( $category_name ) . '</a>';
+    $category_id = $the_category[0]->term_id;
+    $category_url = get_category_link( $category_id );
+    $html = '<a href="' . $category_url . '">' . esc_html( $category_name ) . '</a>';
     return $html;
   }
 }
