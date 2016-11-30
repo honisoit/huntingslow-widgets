@@ -49,7 +49,7 @@ class Huntingslow_Single_Sm extends WP_Widget {
 				<div class="single-sm">
 					<?php if ($display_image == '1') : ?>
 						<figure class="single-sm__image">
-							<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+							<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
 						</figure>
 					<?php endif; ?>
 

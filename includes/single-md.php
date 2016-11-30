@@ -48,7 +48,7 @@ class Huntingslow_Single_Md extends WP_Widget {
 
 				<div class="single-md">
 					<figure class="single-md__image">
-						<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+						<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
 					</figure>
 					<?php if ( $display_primary_tag == '1' ) : ?>
 						<p class="single-md__primary-tag"><?php echo get_the_primary_tag_link(); ?></p>

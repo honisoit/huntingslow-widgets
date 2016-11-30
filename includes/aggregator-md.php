@@ -71,7 +71,7 @@ class Huntingslow_Aggregator_Md extends WP_Widget {
 				  while ( $feature_post->have_posts() ) {
 					  $feature_post->the_post(); ?>
 							<figure class="aggregator-md__featured-image">
-								<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+								<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
 							</figure>
 							<h4 class="aggregator-md__featured-headline">
 								<a href="<?php echo get_the_permalink() ?>"><?php echo get_the_title(); ?></a>

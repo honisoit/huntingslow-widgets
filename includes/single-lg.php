@@ -54,7 +54,7 @@ class Huntingslow_Single_Lg extends WP_Widget {
 					<div class="flex-container">
 						<?php if ($display_image == '1') : ?>
 							<figure class="single-lg__image">
-								<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+								<a href="<?php echo get_the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
 							</figure>
 						<?php endif; ?>
 						<div class="single-lg__copy">
